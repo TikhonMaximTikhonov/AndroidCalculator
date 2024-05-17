@@ -1,4 +1,4 @@
-package ru.pechenka.androidcalculator.ui.theme
+package ru.pechenka.androidcalculator.views.ui.theme
 
 import android.app.Activity
 import android.os.Build
