@@ -3,22 +3,29 @@ package ru.pechenka.androidcalculator
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.foundation.isSystemInDarkTheme
+import ru.pechenka.androidcalculator.viewmodels.main.CalculationViewModel
+import ru.pechenka.androidcalculator.views.main.MainScreen
 import ru.pechenka.androidcalculator.views.ui.theme.AndroidCalculatorTheme
+
+val viewModel = CalculationViewModel()
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val displayHeight = baseContext.resources.displayMetrics.heightPixels
+        val displayWidth = baseContext.resources.displayMetrics.widthPixels
+
         setContent {
-            AndroidCalculatorTheme {
-                    MainActivity()
-                }
+            if (viewModel.state.darkTheme == 2) {
+                viewModel.state = viewModel.state.copy(
+                    darkTheme = if (isSystemInDarkTheme()) 1
+                    else 0
+                )
+            }
+            AndroidCalculatorTheme(viewModel.state.darkTheme == 1) {
+                MainScreen(displayHeight, displayWidth, viewModel)
             }
         }
     }
