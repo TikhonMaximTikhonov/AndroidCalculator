@@ -69,7 +69,10 @@ class CalculationViewModel : ViewModel() {
                 is CalculationOperation.None -> return
             }.toString().take(15)
 
-            while (result[result.length - 1] == '0' || result[result.length - 1] == '.') {
+            while (
+                "." in result &&
+                (result[result.length - 1] == '0' || result[result.length - 1] == '.')
+            ) {
                 result = result.slice(0..<result.length-1)
             }
 

@@ -8,9 +8,9 @@ import ru.pechenka.androidcalculator.viewmodels.main.CalculationViewModel
 import ru.pechenka.androidcalculator.views.main.MainScreen
 import ru.pechenka.androidcalculator.views.ui.theme.AndroidCalculatorTheme
 
-val viewModel = CalculationViewModel()
 
 class MainActivity : ComponentActivity() {
+    private val viewModel = CalculationViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
